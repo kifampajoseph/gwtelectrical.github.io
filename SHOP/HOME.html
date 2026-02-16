@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GWT ELECTRICAL SHOP - Kampala, Kiseka</title>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: #1a3e60;
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ffaa00;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: 0.3s;
+        }
+
+        .nav-links li a:hover {
+            background: #ffaa00;
+            border-radius: 5px;
+            color: #1a3e60;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26,62,96,0.9), rgba(26,62,96,0.9)), url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background: #ffaa00;
+            color: #1a3e60;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #ffc34d;
+            transform: scale(1.05);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Products Section */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #1a3e60;
+            margin-bottom: 2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            color: #1a3e60;
+            margin: 1rem 0;
+        }
+
+        .product-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .features {
+            list-style: none;
+        }
+
+        .features li {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .features li:before {
+            content: "✓";
+            color: #ffaa00;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26,62,96,0.8);
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* ============================================= */
+        /* NEW: VIDEO PLACEHOLDER SECTION - GUARANTEED TO WORK */
+        /* ============================================= */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .video-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            text-align: center;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .video-placeholder {
+            background: linear-gradient(135deg, #1a3e60, #2a5a8c);
+            padding: 3rem 1rem;
+            color: white;
+            position: relative;
+        }
+        
+        .video-placeholder i {
+            font-size: 5rem;
+            color: #ffaa00;
+            margin-bottom: 1rem;
+        }
+        
+        .video-placeholder h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .video-placeholder p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        .play-button {
+            background: #ffaa00;
+            color: #1a3e60;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto 0;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 3px solid white;
+        }
+        
+        .play-button:hover {
+            transform: scale(1.1);
+            background: white;
+            color: #1a3e60;
+        }
+        
+        .video-info {
+            padding: 1rem;
+        }
+        
+        .video-info h3 {
+            color: #1a3e60;
+            margin-bottom: 0.5rem;
+        }
+        
+        .video-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .video-note {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #e7f3ff;
+            border: 1px solid #b8daff;
+            border-radius: 5px;
+            color: #004085;
+        }
+        
+        .video-note i {
+            color: #ffaa00;
+            margin-right: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .contact-info {
+            padding: 1rem;
+        }
+
+        .contact-info h3 {
+            color: #1a3e60;
+            margin-bottom: 1rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .contact-detail i {
+            width: 30px;
+            color: #ffaa00;
+            font-size: 1.2rem;
+        }
+
+        .map {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a3e60;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li a {
+                padding: 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">⚡ <span>GWT ELECTRICAL SHOP</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="hero">
+            <h1>⚡ GWT ELECTRICALS</h1>
+            <p>Your Trusted Electrical Shop in Kampala, Kiseka | Quality Products at Best Prices</p>
+            <a href="#contact" class="btn">Contact Us Today</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="container">
+        <h2 class="section-title">Our Products</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/61UWGF9P67L._AC_SL1001_.jpg" alt="Enamel Coated Copper Motor Wire">
+                <h3>Copper & Cables</h3>
+                <p>Finest quality copper wires, motor winding wires, flexible cables, and electrical wiring solutions</p>
+            </div>
+            <div class="product-card">
+                <img src="https://s.alicdn.com/@sc04/kf/H72d775aba2374dcba51e39d946fcf956g.jpg" alt="Premium Contactors and Breakers">
+                <h3>Contactors & Breakers</h3>
+                <p>Premium Contactors, Breakers, and electrical accessories</p>
+            </div>
+            <div class="product-card">
+                <img src="https://ug.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/06/133131/2.jpg?8500" alt="Weighing Scales">
+                <h3>Weighing Scales</h3>
+                <p>Digital and analog weighing scales for commercial and industrial use</p>
+            </div>
+            <div class="product-card">
+                <img src="https://i.ebayimg.com/images/g/v6kAAeSwCEhof~lN/s-l1600.webp" alt="Wall Mounted Distribution Box">
+                <h3>Wall Mounted Box</h3>
+                <p>MCBs, distribution boxes, voltage stabilizers, and electrical enclosures</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container">
+        <h2 class="section-title">About Us</h2>
+        <div class="about">
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Welcome to <strong>GWT ELECTRICALS</strong> — your premier destination for all electrical needs in <strong>Kampala (Kiseka)</strong> along <strong>Mackay Road, New Park Building, Shop No. S25, Ground Floor</strong>. With years of experience in the electrical industry, we take pride in providing <strong>Andeli</strong> top-quality products and exceptional service to our valued customers.</p>
+                    <p>We understand the importance of reliable electrical products for your home and business. That's why we stock only the best brand <strong>Andeli</strong> and ensure every product meets the highest safety standards.</p>
+                    <ul class="features">
+                        <li>100% genuine products</li>
+                        <li>Competitive prices</li>
+                        <li>Expert advice and support</li>
+                        <li>Wide range of electrical brands</li>
+                        <li>After-sales service</li>
+                    </ul>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 6rem; color: #1a3e60;">⚡</div>
+                    <h3 style="color: #1a3e60; margin-top: 1rem;">15+ Years</h3>
+                    <p style="color: #666;">of Excellence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="container">
+        <h2 class="section-title">Our Gallery</h2>
+        <div class="gallery-grid">
+            <!-- Your existing gallery items (keeping them all) -->
+            <div class="gallery-item">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2023/8/339175805/IV/BR/RL/40381110/soft-starter-panel-1000x1000.jpg" alt="Electrical Control Panel">
+                <div class="gallery-caption">Control Panels</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ebayimg.com/images/g/4QgAAOSwWGpoQ2mU/s-l1600.webp" alt="Electrical Products Display">
+                <div class="gallery-caption">Voltage lights</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ebayimg.com/images/g/UQkAAeSwOopoB0qJ/s-l1600.webp" alt="Wires and Switches">
+                <div class="gallery-caption">insulating papers</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://t3.ftcdn.net/jpg/16/74/18/04/240_F_1674180469_veOvFQLuObgK5RV9tI4pTT6meeV9uscR.jpg" alt="Electrical Tools">
+                <div class="gallery-caption">copper wires</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://dedjh0j7jhutx.cloudfront.net/1397864099605422080%2Fd447e282bc9eab49743928b621d3bfa1.webp" alt="Lighting Solutions">
+                <div class="gallery-caption">Breakers</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://dedjh0j7jhutx.cloudfront.net/1397864099605422080%2F58eebd8a73a66f759a3a6b8f24c62b60.webp" alt="Electrical Equipment">
+                <div class="gallery-caption">Electrical Equipment</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ebayimg.com/images/g/Eh0AAeSwj9No55R7/s-l1600.webp" alt="Circuit Breakers">
+                <div class="gallery-caption">Contactors</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://b890198.smushcdn.com/890198/wp-content/uploads/2017/09/drive-belts-crp.png?lossy=1&strip=1&webp=1" alt="Drive Belts">
+                <div class="gallery-caption">Drive Belts</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://thumbs.dreamstime.com/b/cable-lugs-connecting-electrical-cables-different-voltages-connection-to-terminal-electrician-copy-space-203352320.jpg" alt="Cable Lugs">
+                <div class="gallery-caption">Cable Lugs</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ebayimg.com/images/g/JfIAAeSw~n5pjM7C/s-l1600.webp" alt="Electrical Enclosures">
+                <div class="gallery-caption">Electrical Enclosures</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ebayimg.com/images/g/U2IAAeSwHzxono3c/s-l1200.jpg" alt="Safety Equipment">
+                <div class="gallery-caption">Safety Equipment</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ebayimg.com/images/g/EUQAAOSw-Xdg9oWx/s-l1600.webp" alt="Electric Motors">
+                <div class="gallery-caption">Din rail</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2023/11/362800532/XT/LJ/BV/13256050/600m-kg-widely-using-pp-banana-twine-500x500.jpg" alt="Cable Trays">
+                <div class="gallery-caption">Baler</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://image.made-in-china.com/365f3j00cKDfEIntVgbT/Industry-Electric-Motor-Bearing-Deep-Groove-Ball-Bearings.webp" alt="Bearings">
+                <div class="gallery-caption">Bearings</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ebayimg.com/images/g/MiMAAeSwMthoymD2/s-l960.webp" alt="Timer">
+                <div class="gallery-caption">Timer</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://rukminim2.flixcart.com/image/480/640/ks3jjbk0/cable-sleeve/n/7/r/8mm-fiberglass-insulation-sleeves-silicone-coated-wire-sleeve-original-imag5qkrhp5pav6s.jpeg?q=90" alt="Sleeves">
+                <div class="gallery-caption">Sleeves</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTfMh_TE6ccUKfR1QV-6PUmwVqBWJWa0laXEEAztDXaOCmCdtzHpn37QS_EWioeDbj-g1fvcdoQbRbZ_fqayCSjpJHJBIaoygxAIeNkI8s1mjA8GYfmdSi11C6fNS4F-46bVG47Ibui3VM&usqp=CAc" alt="SSR">
+                <div class="gallery-caption">SSR</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ebayimg.com/images/g/5FYAAeSw5FNpAEFj/s-l1600.webp" alt="Industrial Socket">
+                <div class="gallery-caption">Industrial socket</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- VIDEOS SECTION - USING ICONS (100% GUARANTEED TO WORK)      -->
+    <!-- ============================================================ -->
+    <section id="videos" class="container">
+        <h2 class="section-title">Our Videos</h2>
+        
+        <div class="video-note">
+            <i class="fas fa-info-circle"></i> 
+            Click the play buttons below to see our electrical tutorials (videos coming soon!)
+        </div>
+        
+        <div class="videos-grid">
+            
+            <!-- VIDEO 1: Electrical Wiring -->
+            <div class="video-card">
+                <div class="video-placeholder">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Electrical Wiring</h3>
+                    <p>Coming Soon</p>
+                    <div class="play-button" onclick="alert('Video: Electrical Wiring Basics - Will be available soon! Call 0758 541859 for inquiries.')">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>Electrical Wiring Basics</h3>
+                    <p>Learn about basic electrical wiring techniques</p>
+                </div>
+            </div>
+            
+            <!-- VIDEO 2: Electric Motors -->
+            <div class="video-card">
+                <div class="video-placeholder">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Electric Motors</h3>
+                    <p>Coming Soon</p>
+                    <div class="play-button" onclick="alert('Video: How Electric Motors Work - Will be available soon! Call 0758 541859 for inquiries.')">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>How Electric Motors Work</h3>
+                    <p>Understanding electric motor basics</p>
+                </div>
+            </div>
+            
+            <!-- VIDEO 3: Circuit Breakers -->
+            <div class="video-card">
+                <div class="video-placeholder">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Circuit Breakers</h3>
+                    <p>Coming Soon</p>
+                    <div class="play-button" onclick="alert('Video: Circuit Breakers Explained - Will be available soon! Call 0758 541859 for inquiries.')">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>Circuit Breakers Explained</h3>
+                    <p>How circuit breakers work and types</p>
+                </div>
+            </div>
+            
+            <!-- VIDEO 4: Electrical Safety -->
+            <div class="video-card">
+                <div class="video-placeholder">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Safety Tips</h3>
+                    <p>Coming Soon</p>
+                    <div class="play-button" onclick="alert('Video: Electrical Safety Tips - Will be available soon! Call 0758 541859 for inquiries.')">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>Electrical Safety Tips</h3>
+                    <p>Important safety tips for electrical work</p>
+                </div>
+            </div>
+            
+            <!-- VIDEO 5: Wiring a Socket -->
+            <div class="video-card">
+                <div class="video-placeholder">
+                    <i class="fas fa-plug"></i>
+                    <h3>Wiring Socket</h3>
+                    <p>Coming Soon</p>
+                    <div class="play-button" onclick="alert('Video: How to Wire a Socket - Will be available soon! Call 0758 541859 for inquiries.')">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>How to Wire a Socket</h3>
+                    <p>Step by step guide to wiring electrical sockets</p>
+                </div>
+            </div>
+            
+            <!-- VIDEO 6: LED Lighting -->
+            <div class="video-card">
+                <div class="video-placeholder">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>LED Lighting</h3>
+                    <p>Coming Soon</p>
+                    <div class="play-button" onclick="alert('Video: LED Lighting Installation - Will be available soon! Call 0758 541859 for inquiries.')">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>LED Lighting Installation</h3>
+                    <p>How to install LED lights properly</p>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Template for adding more videos -->
+        <div class="video-note" style="margin-top: 2rem; background: #d4edda; border-color: #c3e6cb; color: #155724;">
+            <i class="fas fa-check-circle"></i> 
+            <strong>Videos coming soon!</strong> Contact us on WhatsApp for any electrical questions.
+        </div>
+    </section>
+    <!-- ============================================================ -->
+    <!-- END OF VIDEOS SECTION                                        -->
+    <!-- ============================================================ -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <div class="contact-detail">
+                    <i>📍</i>
+                    <span><strong>GWT ELECTRICALS</strong><br>Mackay Road, New Park Building<br>Shop No. S25, Ground Floor<br>Kampala, Kiseka - Uganda</span>
+                </div>
+                <div class="contact-detail">
+                    <i>📞</i>
+                    <span>0758 541859</span>
+                </div>
+                <div class="contact-detail">
+                    <i>📱</i>
+                    <span>0772 325957</span>
+                </div>
+                <div class="contact-detail">
+                    <i>✉️</i>
+                    <span>gwt23ug@yahoo.com</span>
+                </div>
+                <div class="contact-detail">
+                    <i>🕒</i>
+                    <span>Monday - Saturday: 9:00 AM - 8:00 PM<br>Sunday: Closed</span>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <a href="https://wa.me/25677235957" class="btn" style="background: #25d366; color: white;" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    <a href="tel:0758541859" class="btn" style="background: #1a3e60; color: white; margin-left: 1rem;"><i class="fas fa-phone"></i> Call Now</a>
+                </div>
+            </div>
+            <div class="map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.740317041875!2d32.578759!3d0.313385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dba15ae7b3b35%3A0x6b3b5b5b5b5b5b5b!2sKiseka%20Market!5e0!3m2!1sen!2sug!4v1620000000000!5m2!1sen!2sug" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0; min-height: 350px;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/25677235957" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 GWT ELECTRICALS. All rights reserved. | Electrical Shop in Kampala, Kiseka</p>
+        <p style="margin-top: 0.5rem;">📍 Mackay Road, New Park Building, Shop No. S25, Ground Floor</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">⚡ Quality Andeli Electrical Products at Best Prices ⚡</p>
+    </footer>
+</body>
+</html>
